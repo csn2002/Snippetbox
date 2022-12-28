@@ -7,18 +7,29 @@ import (
 
 // Added some more functionalities as handler
 func home(w http.ResponseWriter, r *http.Request) {
+	//added a check to prevent "/" this to act as subtree pattern
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
 	w.Write([]byte("Hello from Snippetbox"))
 }
 func showsnippet(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Display a specific snippet"))
 }
 func createsnippet(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		w.Header().Set("Allow", "POST") //header() acts as a map
+		w.WriteHeader(405)
+		w.Write([]byte("Method Not Allowed"))
+	}
+
 	w.Write([]byte("create a new snippet"))
 }
 func main() {
-	mux := http.NewServeMux() //new serve mux used to map the url pattern ("/") to the handler home
+	mux := http.NewServeMux()
+	//we can also use http.HandleFunc without defining mux which use its own DefaultServemux
 	mux.HandleFunc("/", home)
-	//"/snippet","/snippet/create" are fixed path patterns while "/" followed a subtree patterns(it's a catch-all)
 	mux.HandleFunc("/snippet", showsnippet)
 	mux.HandleFunc("/snippet/create", createsnippet)
 
