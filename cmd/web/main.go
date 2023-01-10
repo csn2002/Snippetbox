@@ -1,19 +1,32 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
+	"os"
 )
 
-func main() {
-	mux := http.NewServeMux()
+type application struct {
+	errorlog *log.Logger
+	infolog  *log.Logger
+}
 
-	mux.HandleFunc("/", home)
-	mux.HandleFunc("/snippet", showsnippet)
-	mux.HandleFunc("/snippet/create", createsnippet)
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-	log.Println("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
-	log.Fatal(err)
+func main() {
+	addr := flag.String("addr", ":4000", "HTTP Network Address")
+	flag.Parse()
+	infolog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	errorlog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app := &application{
+		errorlog: errorlog,
+		infolog:  infolog,
+	}
+	infolog.Println("Starting server on %s", *addr)
+	srv := &http.Server{
+		Addr:     *addr,
+		ErrorLog: errorlog,
+		Handler:  app.routes(),
+	}
+	err := srv.ListenAndServe()
+	errorlog.Fatal(err)
 }
