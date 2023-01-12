@@ -5,15 +5,17 @@ import (
 	"flag"
 	"github.com/csn2002/Snippetbox/pkg/models/mysql"
 	_ "github.com/go-sql-driver/mysql"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 )
 
 type application struct {
-	errorlog *log.Logger
-	infolog  *log.Logger
-	snippets *mysql.SnippetModel
+	errorlog      *log.Logger
+	infolog       *log.Logger
+	snippets      *mysql.SnippetModel
+	templateCatch map[string]*template.Template
 }
 
 func main() {
@@ -31,10 +33,15 @@ func main() {
 	m := &mysql.SnippetModel{
 		DB: db,
 	}
+	templateCache, err := newTemplateCache("./ui/html/")
+	if err != nil {
+		errorlog.Fatal(err)
+	}
 	app := &application{
-		errorlog: errorlog,
-		infolog:  infolog,
-		snippets: m,
+		errorlog:      errorlog,
+		infolog:       infolog,
+		snippets:      m,
+		templateCatch: templateCache,
 	}
 
 	infolog.Println("Starting server on %s", *addr)

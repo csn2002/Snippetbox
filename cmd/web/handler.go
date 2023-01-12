@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/csn2002/Snippetbox/pkg/models"
-	"html/template"
 	"net/http"
 	"strconv"
 )
@@ -20,24 +19,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	data := &templateData{Snippets: s}
-	//for _, snippet := range s {
-	//	fmt.Fprintf(w, "%v\n", snippet)
-	//}
-	files := []string{
-		"./ui/html/home.page.tmpl",
-		"./ui/html/base.layout.tmpl",
-		"./ui/html/footer.partial.tmpl",
-	}
+	app.render(w, r, "home.page.tmpl", data)
 
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.serverError(w, err)
-		return
-	}
-	err = ts.Execute(w, data)
-	if err != nil {
-		app.serverError(w, err)
-	}
 }
 func (app *application) showsnippet(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
@@ -56,24 +39,7 @@ func (app *application) showsnippet(w http.ResponseWriter, r *http.Request) {
 	data := &templateData{
 		Snippet: s,
 	}
-	files := []string{
-		"./ui/html/show.page.tmpl",
-		"./ui/html/base.layout.tmpl",
-		"./ui/html/footer.partial.tmpl",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.serverError(w, err)
-		return
-	}
-	err = ts.Execute(w, data)
-	if err != nil {
-		app.serverError(w, err)
-	}
-	// Write the snippet data as a plain-text HTTP response body.
-	//fmt.Fprintf(w, "%v", s)
-	//fmt.Fprintln(w, "Display a specific snippet with ID %d..", id)
+	app.render(w, r, "show.page.tmpl", data)
 }
 func (app *application) createsnippet(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
