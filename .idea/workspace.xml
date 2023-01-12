@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Add Configuration and Error Handling During Runtime&#10;Command Line Flag, Levelled Logging,Dependency Injection, Centralized error Handling, Isolating the routes">
-      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/models/models.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/models/mysql/snippets.go" afterDir="false" />
+    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Design a MySQL database model for the project.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/helpers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/html/home.page.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/home.page.tmpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +63,8 @@
     <MESSAGE value="Added Some Check&#10;added a check to prevent &quot;/&quot; this to act as subtree pattern&#10;Verify the required method(POST) is passed or not for create snippet" />
     <MESSAGE value="Add HTML template for our Home page and also add folders to organise our code." />
     <MESSAGE value="Add Configuration and Error Handling During Runtime&#10;Command Line Flag, Levelled Logging,Dependency Injection, Centralized error Handling, Isolating the routes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Configuration and Error Handling During Runtime&#10;Command Line Flag, Levelled Logging,Dependency Injection, Centralized error Handling, Isolating the routes" />
+    <MESSAGE value="Design a MySQL database model for the project." />
+    <option name="LAST_COMMIT_MESSAGE" value="Design a MySQL database model for the project." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
