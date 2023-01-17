@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Implement Catching Template , Catching Runtime Errors,Common Dynamic Data,Custom Templates Functions">
+    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Add forms to website to take input from user to create snippet learnt to implement Middleware.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/routes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/templates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/base.layout.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/base.layout.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/home.page.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/home.page.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/html/create.page.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/create.page.tmpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +66,8 @@
     <MESSAGE value="Design a MySQL database model for the project." />
     <MESSAGE value="Added Some Templates for Dynamic Html" />
     <MESSAGE value="Implement Catching Template , Catching Runtime Errors,Common Dynamic Data,Custom Templates Functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement Catching Template , Catching Runtime Errors,Common Dynamic Data,Custom Templates Functions" />
+    <MESSAGE value="Add forms to website to take input from user to create snippet learnt to implement Middleware." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add forms to website to take input from user to create snippet learnt to implement Middleware." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
