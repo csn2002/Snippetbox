@@ -8,6 +8,10 @@ import (
 	"time"
 )
 
+func (app *application) authenticateduser(r *http.Request) int {
+	return app.session.GetInt(r, "userID")
+}
+
 func (app *application) serverError(w http.ResponseWriter, err error) {
 	trace := fmt.Sprintln("%s\n%s", err.Error(), debug.Stack())
 	app.errorlog.Output(2, trace)
@@ -24,6 +28,8 @@ func (app *application) adddefaultdata(r *http.Request, td *templateData) *templ
 		td = &templateData{}
 	}
 	td.Currentyear = time.Now().Year()
+	td.Flash = app.session.PopString(r, "flash")
+	td.AuthenticatedUser = app.authenticateduser(r)
 	return td
 }
 

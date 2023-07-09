@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Add forms to website to take input from user to create snippet learnt to implement Middleware.">
+    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Added a new package &quot;forms&quot; for forms implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/helpers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/routes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/templates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/create.page.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/create.page.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/forms/forms.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/forms/forms.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/models.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/html/base.layout.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/base.layout.tmpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,20 +34,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/csnar/GolandProjects/Snippetbox&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "C:/Users/csnar/GolandProjects/Snippetbox",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
@@ -67,7 +74,8 @@
     <MESSAGE value="Added Some Templates for Dynamic Html" />
     <MESSAGE value="Implement Catching Template , Catching Runtime Errors,Common Dynamic Data,Custom Templates Functions" />
     <MESSAGE value="Add forms to website to take input from user to create snippet learnt to implement Middleware." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add forms to website to take input from user to create snippet learnt to implement Middleware." />
+    <MESSAGE value="Added a new package &quot;forms&quot; for forms implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a new package &quot;forms&quot; for forms implementation" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

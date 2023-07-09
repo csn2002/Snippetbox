@@ -6,6 +6,8 @@ import (
 )
 
 var ErrNoRecord = errors.New("models: no mathing record found")
+var ErrInvalidCredential = errors.New("models: Invalid Credential")
+var ErrDuplicateEmail = errors.New("models: Email already Exist")
 
 type Snippet struct {
 	ID      int
@@ -13,4 +15,11 @@ type Snippet struct {
 	Content string
 	Created time.Time
 	Expires time.Time
+}
+type User struct {
+	ID             int
+	Name           string
+	Email          string
+	HashedPassword string
+	Created        time.Time
 }
