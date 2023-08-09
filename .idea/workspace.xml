@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Added a new package &quot;forms&quot; for forms implementation">
+    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Final Login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/helpers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/templates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/forms/forms.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/forms/forms.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/models/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/models.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/base.layout.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/base.layout.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/mysql/snippets.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/mysql/snippets.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uihtmlshow.page.tmpl" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +45,11 @@
     "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\csnar\GolandProjects\Snippetbox" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
@@ -75,7 +76,8 @@
     <MESSAGE value="Implement Catching Template , Catching Runtime Errors,Common Dynamic Data,Custom Templates Functions" />
     <MESSAGE value="Add forms to website to take input from user to create snippet learnt to implement Middleware." />
     <MESSAGE value="Added a new package &quot;forms&quot; for forms implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a new package &quot;forms&quot; for forms implementation" />
+    <MESSAGE value="Final Login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Login" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

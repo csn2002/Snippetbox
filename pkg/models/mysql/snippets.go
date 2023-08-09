@@ -3,6 +3,7 @@ package mysql
 import (
 	"database/sql"
 	"github.com/csn2002/Snippetbox/pkg/models"
+	"time"
 )
 
 type SnippetModel struct {
@@ -27,12 +28,24 @@ func (m *SnippetModel) Get(id int) (*models.Snippet, error) {
 	WHERE expires > UTC_TIMESTAMP() AND id = ?`
 	row := m.DB.QueryRow(stmt, id)
 	s := &models.Snippet{}
-	err := row.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
+	var createdStr string
+	var expiredStr string
+	err := row.Scan(&s.ID, &s.Title, &s.Content, &createdStr, &expiredStr)
 	if err == sql.ErrNoRows {
 		return nil, models.ErrNoRecord
 	} else if err != nil {
 		return nil, err
 	}
+	createdTime, parseErr := time.Parse("2006-01-02 15:04:05", createdStr)
+	if parseErr != nil {
+		return nil, parseErr
+	}
+	expireTime, parseErr := time.Parse("2006-01-02 15:04:05", expiredStr)
+	if parseErr != nil {
+		return nil, parseErr
+	}
+	s.Expires = expireTime
+	s.Created = createdTime
 	return s, nil
 }
 func (m *SnippetModel) Latest() ([]*models.Snippet, error) {
@@ -46,10 +59,22 @@ func (m *SnippetModel) Latest() ([]*models.Snippet, error) {
 	defer rows.Close()
 	for rows.Next() {
 		s := &models.Snippet{}
-		err := rows.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
+		var createdStr string
+		var expiredStr string
+		err := rows.Scan(&s.ID, &s.Title, &s.Content, &createdStr, &expiredStr)
 		if err != nil {
 			return nil, err
 		}
+		createdTime, parseErr := time.Parse("2006-01-02 15:04:05", createdStr)
+		if parseErr != nil {
+			return nil, parseErr
+		}
+		expireTime, parseErr := time.Parse("2006-01-02 15:04:05", expiredStr)
+		if parseErr != nil {
+			return nil, parseErr
+		}
+		s.Expires = expireTime
+		s.Created = createdTime
 		snippets = append(snippets, s)
 	}
 	if err = rows.Err(); err != nil {

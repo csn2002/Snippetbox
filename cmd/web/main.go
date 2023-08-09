@@ -1,12 +1,12 @@
 package main
 
 import (
-	"crypto/tls"
 	"database/sql"
 	"flag"
 	"github.com/csn2002/Snippetbox/pkg/models/mysql"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golangcollege/sessions"
+	"github.com/joho/godotenv"
 	"html/template"
 	"log"
 	"net/http"
@@ -24,8 +24,11 @@ type application struct {
 }
 
 func main() {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	addr := flag.String("addr", ":4000", "HTTP Network Address")
-	dsn := flag.String("dsn", "web1:123456789@/snippetbox?parseTime=true", "MySQL Database")
+	dsn := flag.String("dsn", os.Getenv("DSN"), "MySQL Database")
 	secret := flag.String("secret", "mynameisanthonygolandservice@123", "secret key")
 	flag.Parse()
 	infolog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
@@ -57,22 +60,23 @@ func main() {
 		templateCatch: templateCache,
 		users:         u,
 	}
-	tlsConfig := &tls.Config{
-		PreferServerCipherSuites: true,
-		CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
-	}
+	//tlsConfig := &tls.Config{
+	//	PreferServerCipherSuites: true,
+	//	CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
+	//}
 
 	infolog.Println("Starting server on %s", *addr)
 	srv := &http.Server{
-		Addr:         *addr,
-		ErrorLog:     errorlog,
-		Handler:      app.routes(),
-		TLSConfig:    tlsConfig,
+		Addr:     *addr,
+		ErrorLog: errorlog,
+		Handler:  app.routes(),
+		//TLSConfig:    tlsConfig,
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
-	err = srv.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
+	err = srv.ListenAndServe()
+	//err = srv.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
 	errorlog.Fatal(err)
 }
 func openDB(dsn string) (*sql.DB, error) {
