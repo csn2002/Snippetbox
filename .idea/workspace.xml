@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Update database">
+    <list default="true" id="bb308be7-51af-4dfa-abad-e86fe016ad6b" name="Changes" comment="Upadate users Privacy and Security">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/models/mysql/snippets.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/mysql/snippets.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +74,8 @@
     <MESSAGE value="Added a new package &quot;forms&quot; for forms implementation" />
     <MESSAGE value="Final Login" />
     <MESSAGE value="Update database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update database" />
+    <MESSAGE value="Upadate users Privacy and Security" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upadate users Privacy and Security" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

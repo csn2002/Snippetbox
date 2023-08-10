@@ -19,7 +19,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		data := &templateData{Snippets: s}
 		app.render(w, r, "home.page.tmpl", data)
 	} else {
-		app.session.Put(r, "flash", "Login to see your Snippets")
+		//app.session.Put(r, "flash", "Welcome to Snippetbox")
+		app.session.Put(r, "flash", "Welcome to Snippetbox \n Login to see your Snippets")
 		app.render(w, r, "login.page.tmpl", &templateData{
 			Form: forms.New(nil),
 		})
