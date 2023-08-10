@@ -10,10 +10,10 @@ type SnippetModel struct {
 	DB *sql.DB
 }
 
-func (m *SnippetModel) Insert(title, content, expires string) (int, error) {
-	stmt := `INSERT INTO snippets (title, content, created, expires) 
-VALUES(?, ?, UTC_TIMESTAMP(), DATE_ADD(UTC_TIMESTAMP(), INTERVAL ? DAY))`
-	result, err := m.DB.Exec(stmt, title, content, expires)
+func (m *SnippetModel) Insert(title, content, expires string, userid int) (int, error) {
+	stmt := `INSERT INTO snippets (title, content, created, expires, userid) 
+VALUES(?, ?, UTC_TIMESTAMP(), DATE_ADD(UTC_TIMESTAMP(), INTERVAL ? DAY),?)`
+	result, err := m.DB.Exec(stmt, title, content, expires, userid)
 	if err != nil {
 		return 0, err
 	}
@@ -23,10 +23,10 @@ VALUES(?, ?, UTC_TIMESTAMP(), DATE_ADD(UTC_TIMESTAMP(), INTERVAL ? DAY))`
 	}
 	return int(id), nil
 }
-func (m *SnippetModel) Get(id int) (*models.Snippet, error) {
+func (m *SnippetModel) Get(id, userid int) (*models.Snippet, error) {
 	stmt := `SELECT id, title, content, created, expires FROM snippets
-	WHERE expires > UTC_TIMESTAMP() AND id = ?`
-	row := m.DB.QueryRow(stmt, id)
+	WHERE expires > UTC_TIMESTAMP() AND userid = ? AND id = ?`
+	row := m.DB.QueryRow(stmt, id, userid)
 	s := &models.Snippet{}
 	var createdStr string
 	var expiredStr string
@@ -48,11 +48,11 @@ func (m *SnippetModel) Get(id int) (*models.Snippet, error) {
 	s.Created = createdTime
 	return s, nil
 }
-func (m *SnippetModel) Latest() ([]*models.Snippet, error) {
+func (m *SnippetModel) Latest(userid int) ([]*models.Snippet, error) {
 	stmt := `SELECT id, title, content, created, expires FROM snippets
-	WHERE expires > UTC_TIMESTAMP() ORDER BY created DESC LIMIT 10`
+	WHERE expires > UTC_TIMESTAMP() AND userid = ? ORDER BY created DESC LIMIT 10`
 	snippets := []*models.Snippet{}
-	rows, err := m.DB.Query(stmt)
+	rows, err := m.DB.Query(stmt, userid)
 	if err != nil {
 		return nil, err
 	}

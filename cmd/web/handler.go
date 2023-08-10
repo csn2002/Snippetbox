@@ -10,13 +10,20 @@ import (
 
 //all handler function is now a method against application
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	s, err := app.snippets.Latest()
-	if err != nil {
-		app.serverError(w, err)
-		return
+	if app.authenticateduser(r) != 0 {
+		s, err := app.snippets.Latest(app.authenticateduser(r))
+		if err != nil {
+			app.serverError(w, err)
+			return
+		}
+		data := &templateData{Snippets: s}
+		app.render(w, r, "home.page.tmpl", data)
+	} else {
+		app.session.Put(r, "flash", "Login to see your Snippets")
+		app.render(w, r, "login.page.tmpl", &templateData{
+			Form: forms.New(nil),
+		})
 	}
-	data := &templateData{Snippets: s}
-	app.render(w, r, "home.page.tmpl", data)
 
 }
 func (app *application) showsnippet(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +32,7 @@ func (app *application) showsnippet(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 		return
 	}
-	s, err := app.snippets.Get(id)
+	s, err := app.snippets.Get(id, app.authenticateduser(r))
 	if err == models.ErrNoRecord {
 		app.notFound(w)
 		return
@@ -64,7 +71,7 @@ func (app *application) createsnippet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	id, err := app.snippets.Insert(form.Get("title"), form.Get("content"), form.Get("expires"))
+	id, err := app.snippets.Insert(form.Get("title"), form.Get("content"), form.Get("expires"), app.authenticateduser(r))
 	if err != nil {
 		app.serverError(w, err)
 		return
@@ -129,7 +136,7 @@ func (app *application) loginuser(w http.ResponseWriter, r *http.Request) {
 	}
 	app.session.Put(r, "userID", id)
 	//app.session.Put(r, "flash", "Login successful")
-	http.Redirect(w, r, "/snippet/create", http.StatusSeeOther)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 func (app *application) logoutuser(w http.ResponseWriter, r *http.Request) {
 	app.session.Remove(r, "userID")
