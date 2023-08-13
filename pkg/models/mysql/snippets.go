@@ -26,7 +26,7 @@ VALUES(?, ?, UTC_TIMESTAMP(), DATE_ADD(UTC_TIMESTAMP(), INTERVAL ? DAY),?)`
 func (m *SnippetModel) Get(id, userid int) (*models.Snippet, error) {
 	stmt := `SELECT id, title, content, created, expires FROM snippets
 	WHERE expires > UTC_TIMESTAMP() AND userid = ? AND id = ?`
-	row := m.DB.QueryRow(stmt, id, userid)
+	row := m.DB.QueryRow(stmt, userid, id)
 	s := &models.Snippet{}
 	var createdStr string
 	var expiredStr string
