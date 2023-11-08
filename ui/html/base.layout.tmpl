@@ -15,10 +15,16 @@
 <h1><a href='/'>Snippetbox</a></h1>
 </header>
 <nav>
-<div>
+<div id="navbar">
 <a href='/'>Home</a>
 {{if .AuthenticatedUser}}
 <a href='/snippet/create'>Create snippet</a>
+{{end}}
+{{if .AuthenticatedUser}}
+<a href='/user/sharedsnippets'>Shared snippet</a>
+{{end}}
+{{if .AuthenticatedUser}}
+<a href='/user/sharedwithyou'>Shared with you</a>
 {{end}}
 </div>
 <div>

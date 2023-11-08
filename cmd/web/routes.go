@@ -20,6 +20,12 @@ func (app *application) routes() http.Handler {
 	mux.Get("/user/login", dynamicmiidleware.ThenFunc(app.loginuserform))
 	mux.Post("/user/login", dynamicmiidleware.ThenFunc(app.loginuser))
 	mux.Post("/user/logout", dynamicmiidleware.Append(app.requireAuthenticatedUser).ThenFunc(app.logoutuser))
+	// CHANGE START HERE
+	mux.Get("/user/share", dynamicmiidleware.Append(app.requireAuthenticatedUser).ThenFunc(app.shareuserform))
+	mux.Post("/user/share", dynamicmiidleware.Append(app.requireAuthenticatedUser).ThenFunc(app.shareuser))
+	mux.Get("/user/sharedsnippets", dynamicmiidleware.Append(app.requireAuthenticatedUser).ThenFunc(app.sharedsnippets))
+	mux.Get("/user/sharedwithyou", dynamicmiidleware.Append(app.requireAuthenticatedUser).ThenFunc(app.sharedwithyou))
+	//TILL HERE
 	fileServer := http.FileServer(http.Dir("./ui/static/"))
 	mux.Get("/static/", http.StripPrefix("/static", fileServer))
 	return standardmiddleware.Then(mux)

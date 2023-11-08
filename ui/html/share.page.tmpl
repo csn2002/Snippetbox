@@ -1,0 +1,17 @@
+{{template "base".}}
+{{define "title"}}Share{{end}}
+{{define "body"}}
+<form action='/user/share' method='POST' novalidate>
+{{with .Form}}
+<div>
+<label>Email:</label>
+{{with .Errors.Get "email"}}
+<label class='error'>{{.}}</label>
+{{end}}
+<input type='email' name='email' value='{{.Get "email"}}'>
+</div>
+<input type='submit' value='Share'>
+</div>
+{{end}}
+</form>
+{{end}}

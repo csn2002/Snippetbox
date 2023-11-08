@@ -20,6 +20,7 @@ type application struct {
 	infolog       *log.Logger
 	snippets      *mysql.SnippetModel
 	users         *mysql.Usermodel
+	share         *mysql.ShareModel
 	templateCatch map[string]*template.Template
 }
 
@@ -45,6 +46,11 @@ func main() {
 	u := &mysql.Usermodel{
 		DB: db,
 	}
+	//CHANGE STARTS HERE
+	s := &mysql.ShareModel{
+		DB: db,
+	}
+	//CHANGE TILL HERE
 	templateCache, err := newTemplateCache("./ui/html/")
 	if err != nil {
 		errorlog.Fatal(err)
@@ -59,6 +65,9 @@ func main() {
 		snippets:      m,
 		templateCatch: templateCache,
 		users:         u,
+		//CHANGE STARTS HERE
+		share: s,
+		//CHANGE STARTS HERE
 	}
 	//tlsConfig := &tls.Config{
 	//	PreferServerCipherSuites: true,

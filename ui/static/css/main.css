@@ -303,7 +303,6 @@ tr {
 tr:nth-child(2n) {
     background-color: #F7F9FA;
 }
-
 footer {
     border-top: 1px solid #E4E5E7;
     padding-top: 17px;

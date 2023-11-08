@@ -41,7 +41,9 @@ func (app *application) showsnippet(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, err)
 		return
 	}
-
+	//CHANGE STARTS HERE
+	app.session.Put(r, "snippet_id", id)
+	//CHANGE TILL HERE
 	data := &templateData{
 		Snippet: s,
 	}
@@ -141,6 +143,87 @@ func (app *application) loginuser(w http.ResponseWriter, r *http.Request) {
 }
 func (app *application) logoutuser(w http.ResponseWriter, r *http.Request) {
 	app.session.Remove(r, "userID")
+	//CHANGES START HERE
+	app.session.Remove(r, "snippet_id")
+	//CHANGE TILL HERE
 	app.session.Put(r, "flash", "You have been LoggedOut Successfully!")
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+// CHANGE STARTS HERE
+func (app *application) shareuserform(w http.ResponseWriter, r *http.Request) {
+	app.render(w, r, "share.page.tmpl", &templateData{
+		Form: forms.New(nil),
+	})
+}
+func (app *application) shareuser(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+	form := forms.New(r.PostForm)
+	form.Required("email")
+	form.MatchPattern("email", forms.EmailRX)
+	if !form.Valid() {
+		app.render(w, r, "share.page.tmpl", &templateData{
+			Form: form,
+		})
+		return
+	}
+	id, err := app.share.Authenticate(form.Get("email"))
+	if err == models.ErrInvalidCredential {
+		form.Errors.Add("generic", "User not found")
+		app.session.Put(r, "flash", "User not found")
+		app.render(w, r, "share.page.tmpl", &templateData{Form: form})
+		return
+	} else if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	err = app.share.Insert(app.authenticateduser(r), id, app.session.GetInt(r, "snippet_id"))
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	app.session.Put(r, "flash", "Your Snippet Sharing is successful")
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+func (app *application) sharedsnippets(w http.ResponseWriter, r *http.Request) {
+	if app.authenticateduser(r) != 0 {
+		s, err := app.share.Sharedsnippets(app.authenticateduser(r))
+		if err != nil {
+			app.serverError(w, err)
+			return
+		}
+		data := &templateData{Snippets: s}
+		app.render(w, r, "home.page.tmpl", data)
+	} else {
+		//app.session.Put(r, "flash", "Welcome to Snippetbox")
+		app.session.Put(r, "flash", "Welcome to Snippetbox \n Login to see your Snippets")
+		app.render(w, r, "login.page.tmpl", &templateData{
+			Form: forms.New(nil),
+		})
+	}
+
+}
+func (app *application) sharedwithyou(w http.ResponseWriter, r *http.Request) {
+	if app.authenticateduser(r) != 0 {
+		s, err := app.share.LatestSharedWithYou(app.authenticateduser(r))
+		if err != nil {
+			app.serverError(w, err)
+			return
+		}
+		data := &templateData{Snippets: s}
+		app.render(w, r, "home.page.tmpl", data)
+	} else {
+		//app.session.Put(r, "flash", "Welcome to Snippetbox")
+		app.session.Put(r, "flash", "Welcome to Snippetbox \n Login to see your Snippets")
+		app.render(w, r, "login.page.tmpl", &templateData{
+			Form: forms.New(nil),
+		})
+	}
+
+}
+
+// TILL HERE

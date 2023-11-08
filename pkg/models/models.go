@@ -23,3 +23,12 @@ type User struct {
 	HashedPassword string
 	Created        time.Time
 }
+
+//CHANGE STARTS HERE
+type Share struct {
+	ID             int
+	User_id        int
+	Shared_user_id int
+}
+
+//CHANGE TILL HERE
