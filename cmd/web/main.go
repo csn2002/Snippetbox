@@ -1,10 +1,11 @@
 package main
 
 import (
+	"crypto/tls"
 	"database/sql"
 	"flag"
 	"github.com/csn2002/Snippetbox/pkg/models/mysql"
-	_ "github.com/go-sql-driver/mysql"
+	mysqlDriver "github.com/go-sql-driver/mysql"
 	"github.com/golangcollege/sessions"
 	"github.com/joho/godotenv"
 	"html/template"
@@ -34,7 +35,10 @@ func main() {
 	flag.Parse()
 	infolog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorlog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
-
+	mysqlDriver.RegisterTLSConfig("tidb", &tls.Config{
+		MinVersion: tls.VersionTLS12,
+		ServerName: "gateway01.eu-central-1.prod.aws.tidbcloud.com",
+	})
 	db, err := openDB(*dsn)
 	if err != nil {
 		errorlog.Fatal(err)
